@@ -18,7 +18,7 @@ class CoinTile extends StatelessWidget {
   String formatNumber(num num) {
     String value = num.toString();
 
-    if (num < 1000) return value;
+    if (num < 1000.0) return value;
 
     value = value.replaceAll(RegExp(r'\D'), '');
     value = value.replaceAll(RegExp(r'\B(?=(\d{3})+(?!\d))'), ',');
