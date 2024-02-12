@@ -11,7 +11,12 @@ class CoinTile extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => CoinChartPage(coinId: coinData.id)),
+        builder: (context) => CoinChartPage(
+          coinId: coinData.id,
+          coinName: coinData.name,
+          coinImage: coinData.image,
+        ),
+      ),
     );
   }
 

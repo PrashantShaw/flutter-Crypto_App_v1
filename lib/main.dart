@@ -1,4 +1,4 @@
-import 'package:crypto_app_01/pages/coin_market_page.dart';
+// import 'package:crypto_app_01/pages/coin_market_page.dart';
 import 'package:crypto_app_01/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Poppins'),
       // home: CoinMarketPage(),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }

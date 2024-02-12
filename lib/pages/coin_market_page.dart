@@ -2,6 +2,7 @@ import 'package:crypto_app_01/apis/get_coin_market.dart';
 import 'package:crypto_app_01/components/coin_tile.dart';
 import 'package:crypto_app_01/models/coin_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class CoinMarketPage extends StatefulWidget {
   const CoinMarketPage({super.key});
@@ -38,7 +39,12 @@ class _CoinMarketPageState extends State<CoinMarketPage> {
       return errorFetchingDataWidget(coinMarketData);
     }
 
-    return const Center(child: CircularProgressIndicator());
+    return const Center(
+      child: SpinKitHourGlass(
+        color: Colors.amber,
+        size: 50.0,
+      ),
+    );
   }
 
   Padding coinTilesWrapper(List<CoinModel>? marketData) {
