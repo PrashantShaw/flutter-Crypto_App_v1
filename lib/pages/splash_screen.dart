@@ -22,8 +22,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void goToHomePage() {
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => CoinMarketPage()));
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => const CoinMarketPage()));
   }
 
   @override

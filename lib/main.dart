@@ -1,10 +1,19 @@
 // import 'package:crypto_app_01/pages/coin_market_page.dart';
 import 'package:crypto_app_01/pages/splash_screen.dart';
+import 'package:crypto_app_01/providers/coins_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => Coins()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

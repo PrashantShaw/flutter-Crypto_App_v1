@@ -1,8 +1,9 @@
-import 'package:crypto_app_01/apis/get_coin_market.dart';
 import 'package:crypto_app_01/components/coin_tile.dart';
 import 'package:crypto_app_01/models/coin_model.dart';
+import 'package:crypto_app_01/providers/coins_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
 
 class CoinMarketPage extends StatefulWidget {
   const CoinMarketPage({super.key});
@@ -12,33 +13,36 @@ class CoinMarketPage extends StatefulWidget {
 }
 
 class _CoinMarketPageState extends State<CoinMarketPage> {
-  late Future<List<CoinModel>> coinMarketData;
-
   @override
   void initState() {
     super.initState();
-    coinMarketData = getCoinMarket();
+    context.read<Coins>().fetchMarketData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: FutureBuilder(
-        future: coinMarketData,
+      body: Consumer<Coins>(
         builder: renderCoinMarket,
       ),
     );
   }
 
   Widget renderCoinMarket(
-      context, AsyncSnapshot<List<CoinModel>> coinMarketData) {
-    if (coinMarketData.hasData) {
-      return coinTilesWrapper(coinMarketData.data);
-    } else if (coinMarketData.hasError) {
-      return errorFetchingDataWidget(coinMarketData);
-    }
+    BuildContext context,
+    Coins coinsMarketData,
+    Widget? child,
+  ) {
+    Widget toRender = switch (coinsMarketData.loadingState) {
+      DataState.loading => spinKitLoader(),
+      DataState.loaded => coinTilesWrapper(coinsMarketData.coinsList),
+      DataState.error => errorFetchingDataWidget(coinsMarketData.errorMsg),
+    };
+    return toRender;
+  }
 
+  Center spinKitLoader() {
     return const Center(
       child: SpinKitHourGlass(
         color: Colors.amber,
@@ -61,12 +65,12 @@ class _CoinMarketPageState extends State<CoinMarketPage> {
     // return CoinTile(coinMarketData.data);
   }
 
-  Center errorFetchingDataWidget(coinMarketData) {
+  Center errorFetchingDataWidget(errorMsg) {
     // print("Error::: ${coinMarketData.error}");
-    return const Center(
+    return Center(
         child: Text(
-      'Some Error Occured, please try again!',
-      style: TextStyle(fontSize: 32),
+      '$errorMsg',
+      style: const TextStyle(fontSize: 32),
       textAlign: TextAlign.center,
     ));
   }

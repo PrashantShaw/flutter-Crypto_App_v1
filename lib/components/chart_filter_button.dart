@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 class ChartFilterButton extends StatelessWidget {
   final String name;
   final bool isActive;
-  void Function()? onPressed;
+  final void Function()? onPressed;
 
-  ChartFilterButton({
+  const ChartFilterButton({
     super.key,
     required this.name,
     required this.isActive,
