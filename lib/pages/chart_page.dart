@@ -1,11 +1,19 @@
 // import 'package:fl_chart_app/presentation/resources/app_resources.dart';
-import 'package:crypto_app_01/apis/get_coin_prices.dart';
 import 'package:crypto_app_01/components/chart_filter_button.dart';
-import 'package:crypto_app_01/models/coin_chart_model.dart';
+import 'package:crypto_app_01/providers/coinchart_provider.dart';
 import 'package:crypto_app_01/utils/util.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
+
+final Map<String, int> filterSpanDataPoints = {
+  '1H':
+      12, // data points are of 5mins of interval, so 60/5=12 data points in 1H
+  '6H': 12 * 6,
+  '12H': 12 * 12,
+  '24H': 12 * 24,
+};
 
 // ignore: must_be_immutable
 class CoinChartPage extends StatefulWidget {
@@ -25,51 +33,18 @@ class CoinChartPage extends StatefulWidget {
 }
 
 class _CoinChartPageState extends State<CoinChartPage> {
-  late List<List<double>> chartData;
   late double touchedData;
   late DateTime touchedDateTime;
-  bool isFetching = true;
-  bool isError = false;
   String activeChartSpan = '12H';
-  Map<String, int> filterSpanDataPoints = {
-    '1H':
-        12, // data points are of 5mins of interval, so 60/5=12 data points in 1H
-    '6H': 12 * 6,
-    '12H': 12 * 12,
-    '24H': 12 * 24,
-  };
+  bool isInitDataSet = false;
 
   @override
   void initState() {
     super.initState();
-    fetchCoinChartData();
-  }
-
-  void fetchCoinChartData() async {
-    try {
-      // print("Passed coinname :::::::: ${widget.coinId}");
-      setState(() {
-        isFetching = true;
-      });
-      CoinChartModel data = await getCoinChartData(widget.coinId);
-      chartData = data.prices;
-      List<double> lastDataPoint = chartData[chartData.length - 1];
-      touchedData = lastDataPoint[1];
-      touchedDateTime = dateTimeFormatter(lastDataPoint[0].toInt());
-      // print("chartData :: $chartData");
-    } catch (e) {
-      // print("errrrrrrrrrrrrror::: $e");
-      setState(() {
-        isError = true;
-      });
-    } finally {
-      setState(() {
-        isFetching = false;
-      });
-    }
   }
 
   List<FlSpot> getFlSpotList(span) {
+    List<List<double>> chartData = context.read<CoinChart>().coinChartData;
     List<FlSpot> spots = [];
     int len = chartData.length;
     int startIdx = len - filterSpanDataPoints[span]!;
@@ -95,19 +70,16 @@ class _CoinChartPageState extends State<CoinChartPage> {
       _ => throw const FormatException('Invalid')
     };
     return spotsList;
-
-    // List<FlSpot> chartSpots = chartData.map((point) {
-    //   double x = point[0].toDouble();
-    //   double y = point[1].toDouble();
-    //   return FlSpot(x, y);
-    // }).toList();
-    // return chartSpots;
   }
 
   void changeChartSpan(String span) {
     setState(() {
       activeChartSpan = span;
     });
+  }
+
+  void goToPrevPage() {
+    Navigator.pop(context);
   }
 
   @override
@@ -117,7 +89,7 @@ class _CoinChartPageState extends State<CoinChartPage> {
       appBar: AppBar(
         backgroundColor: Colors.grey.shade100,
         leading: IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: goToPrevPage,
           icon: const Icon(
             Icons.arrow_back_ios_new,
             color: Colors.black,
@@ -129,13 +101,12 @@ class _CoinChartPageState extends State<CoinChartPage> {
   }
 
   Widget showWidget() {
-    Widget toShow = isFetching
-        ? renderLoading()
-        : isError
-            ? renderErrorText()
-            : renderCoinChartPage();
-
-    return toShow;
+    Widget toRender = switch (context.watch<CoinChart>().loadingState) {
+      DataState.loading => renderLoading(),
+      DataState.loaded => renderCoinChartPage(),
+      DataState.error => renderErrorText()
+    };
+    return toRender;
   }
 
   Widget renderLoading() {
@@ -157,7 +128,19 @@ class _CoinChartPageState extends State<CoinChartPage> {
     );
   }
 
+  void setInitData() {
+    final data = context.read<CoinChart>().coinChartData;
+    List<double> lastDataPoint = data[data.length - 1];
+    setState(() {
+      touchedData = lastDataPoint[1];
+      touchedDateTime = dateTimeFormatter(lastDataPoint[0].toInt());
+      isInitDataSet = true;
+    });
+  }
+
   Widget renderCoinChartPage() {
+    isInitDataSet ? null : setInitData();
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -180,6 +163,7 @@ class _CoinChartPageState extends State<CoinChartPage> {
           '$touchedDateTime',
           style: textStyle(16, Colors.grey, FontWeight.w400),
         ),
+        // chart
         AspectRatio(
           aspectRatio: 1.25,
           child: Padding(
@@ -189,6 +173,7 @@ class _CoinChartPageState extends State<CoinChartPage> {
                 child: LineChart(createLineChart())),
           ),
         ),
+        // chart filter buttons
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

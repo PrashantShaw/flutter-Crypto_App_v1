@@ -1,5 +1,6 @@
 // import 'package:crypto_app_01/pages/coin_market_page.dart';
 import 'package:crypto_app_01/pages/splash_screen.dart';
+import 'package:crypto_app_01/providers/coinchart_provider.dart';
 import 'package:crypto_app_01/providers/coins_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,6 +11,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => Coins()),
+        ChangeNotifierProvider(create: (_) => CoinChart()),
       ],
       child: const MyApp(),
     ),
