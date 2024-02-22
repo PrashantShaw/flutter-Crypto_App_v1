@@ -1,5 +1,5 @@
 import 'package:crypto_app_01/components/coin_tile.dart';
-import 'package:crypto_app_01/models/coin_model.dart';
+import 'package:crypto_app_01/models_v2/coin_model_v2.dart';
 import 'package:crypto_app_01/providers/coins_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -16,7 +16,7 @@ class _CoinMarketPageState extends State<CoinMarketPage> {
   @override
   void initState() {
     super.initState();
-    context.read<Coins>().fetchMarketData();
+    // context.read<Coins>().fetchMarketData();
   }
 
   @override
@@ -51,13 +51,13 @@ class _CoinMarketPageState extends State<CoinMarketPage> {
     );
   }
 
-  Padding coinTilesWrapper(List<CoinModel>? marketData) {
+  Padding coinTilesWrapper(List<CoinModelV2>? marketData) {
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: ListView.builder(
         itemCount: marketData!.length,
         itemBuilder: (context, index) {
-          CoinModel coinData = marketData[index];
+          CoinModelV2 coinData = marketData[index];
           return CoinTile(coinData: coinData);
         },
       ),

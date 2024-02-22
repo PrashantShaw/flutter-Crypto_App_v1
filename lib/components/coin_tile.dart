@@ -1,4 +1,4 @@
-import 'package:crypto_app_01/models/coin_model.dart';
+import 'package:crypto_app_01/models_v2/coin_model_v2.dart';
 import 'package:crypto_app_01/pages/chart_page.dart';
 import 'package:crypto_app_01/providers/coinchart_provider.dart';
 import 'package:crypto_app_01/utils/util.dart';
@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CoinTile extends StatelessWidget {
-  final CoinModel coinData;
+  final CoinModelV2 coinData;
   const CoinTile({super.key, required this.coinData});
 
   void onCoinTileTap(context) {

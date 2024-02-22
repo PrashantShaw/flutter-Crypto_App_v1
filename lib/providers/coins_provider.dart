@@ -1,5 +1,5 @@
 import 'package:crypto_app_01/apis/get_coin_market.dart';
-import 'package:crypto_app_01/models/coin_model.dart';
+import 'package:crypto_app_01/models_v2/coin_model_v2.dart';
 import 'package:flutter/material.dart';
 
 enum DataState {
@@ -10,12 +10,12 @@ enum DataState {
 
 class Coins extends ChangeNotifier {
   // states
-  late List<CoinModel> _coinsList;
+  late List<CoinModelV2> _coinsList;
   DataState _state = DataState.loading;
   String _error = "";
 
   // getters
-  List<CoinModel> get coinsList => _coinsList;
+  List<CoinModelV2> get coinsList => _coinsList;
   DataState get loadingState => _state;
   String get errorMsg => _error;
 
@@ -35,7 +35,7 @@ class Coins extends ChangeNotifier {
     // handle error
     catch (e) {
       _state = DataState.error;
-      _error = "Error fetching Coins Market data";
+      _error = "Error:: $e";
       notifyListeners();
     }
   }
