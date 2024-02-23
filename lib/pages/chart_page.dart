@@ -50,6 +50,8 @@ class _CoinChartPageState extends State<CoinChartPage> {
     int startIdx = len - filterSpanDataPoints[span]!;
 
     for (var i = startIdx; i < len; i++) {
+      if (i < 0) continue; // if -ve index arises
+
       List<double> point = chartData[i];
       double x = point[0].toDouble();
       double y = point[1].toDouble();

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:crypto_app_01/models_v2/coin_chart_model_v2.dart';
 import 'package:crypto_app_01/models_v2/coin_model_v2.dart';
 import 'package:flutter/material.dart';
 
@@ -20,5 +21,19 @@ DateTime dateTimeFormatter(int timestrap) {
   return dateTime;
 }
 
-List<CoinModelV2> coinModelFromJsonV2(String str) => List<CoinModelV2>.from(
-    json.decode(str).map((x) => CoinModelV2.fromJson(x)));
+List<CoinModelV2> coinModelFromJsonV2(String jsonStr) {
+  List<dynamic> decodedJsonStr = json.decode(jsonStr);
+  Iterable<CoinModelV2> ietrableData =
+      decodedJsonStr.map((item) => CoinModelV2.fromJson(item));
+  List<CoinModelV2> coinModelV2Data = List<CoinModelV2>.from(ietrableData);
+
+  return coinModelV2Data;
+}
+
+CoinChartModelV2 coinChartModelFromJsonV2(String jsonStr) {
+  Map<String, dynamic> decodedJsonStr = json.decode(jsonStr);
+  CoinChartModelV2 coinChartModelV2Data =
+      CoinChartModelV2.fromJson(decodedJsonStr);
+
+  return coinChartModelV2Data;
+}
