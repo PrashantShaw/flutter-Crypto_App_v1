@@ -23,6 +23,68 @@ class _CoinMarketPageState extends State<CoinMarketPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        leading: Builder(
+          builder: (context) => IconButton(
+              onPressed: () => Scaffold.of(context).openDrawer(),
+              icon: const Icon(Icons.sort)),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: IconButton(
+              icon: Icon(Icons.wallet_travel),
+              onPressed: () {
+                showModalBottomSheet<void>(
+                  context: context,
+                  backgroundColor: Colors.white,
+                  elevation: 0,
+                  isScrollControlled: true,
+                  constraints: BoxConstraints(
+                      maxHeight: MediaQuery.of(context).size.height * 0.8),
+                  showDragHandle: true,
+                  builder: (BuildContext context) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(36),
+                      ),
+                      height: MediaQuery.of(context).size.height * 0.65,
+                      width: MediaQuery.of(context).size.width * 1,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 8,
+                          ),
+                          // Icon(
+                          //   Icons.maximize_rounded,
+                          //   size: 60,
+                          //   color: Color(0xFFeaeaea),
+                          // ),
+                          SizedBox(
+                            height: 100,
+                          ),
+                          const Text('Modal BottomSheet'),
+                          ElevatedButton(
+                            child: const Text('Close BottomSheet'),
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
       body: Consumer<Coins>(
         builder: renderCoinMarket,
       ),
@@ -53,7 +115,7 @@ class _CoinMarketPageState extends State<CoinMarketPage> {
 
   Padding coinTilesWrapper(List<CoinModelV2>? marketData) {
     return Padding(
-      padding: const EdgeInsets.all(24.0),
+      padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
       child: ListView.builder(
         itemCount: marketData!.length,
         itemBuilder: (context, index) {

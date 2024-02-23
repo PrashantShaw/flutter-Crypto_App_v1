@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Poppins'),
+      theme: ThemeData(fontFamily: 'Poppins', useMaterial3: true),
       // home: CoinMarketPage(),
       home: const SplashScreen(),
     );
