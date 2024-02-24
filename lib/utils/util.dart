@@ -37,3 +37,8 @@ CoinChartModelV2 coinChartModelFromJsonV2(String jsonStr) {
 
   return coinChartModelV2Data;
 }
+
+void navigateTo(BuildContext context, Widget pageWidget) {
+  Navigator.pushReplacement(
+      context, MaterialPageRoute(builder: (context) => pageWidget));
+}

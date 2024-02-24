@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:crypto_app_01/pages/coin_market_page.dart';
+import 'package:crypto_app_01/pages/root_navigator.dart';
 import 'package:crypto_app_01/providers/coins_provider.dart';
+import 'package:crypto_app_01/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,8 +27,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void goToHomePage() {
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => const CoinMarketPage()));
+    // navigateTo(context, const CoinMarketPage());
+    navigateTo(context, const RootNavigator());
   }
 
   @override

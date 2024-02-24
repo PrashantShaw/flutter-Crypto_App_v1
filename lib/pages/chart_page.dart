@@ -1,5 +1,6 @@
 // import 'package:fl_chart_app/presentation/resources/app_resources.dart';
 import 'package:crypto_app_01/components/chart_filter_button.dart';
+import 'package:crypto_app_01/pages/coin_market_page.dart';
 import 'package:crypto_app_01/providers/coinchart_provider.dart';
 import 'package:crypto_app_01/utils/util.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -81,7 +82,7 @@ class _CoinChartPageState extends State<CoinChartPage> {
   }
 
   void goToPrevPage() {
-    Navigator.pop(context);
+    navigateTo(context, const CoinMarketPage());
   }
 
   @override

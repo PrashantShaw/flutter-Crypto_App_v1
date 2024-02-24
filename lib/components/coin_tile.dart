@@ -14,14 +14,12 @@ class CoinTile extends StatelessWidget {
     Provider.of<CoinChart>(context, listen: false)
         .fetchCoinChartData(coinData.id);
     // navigate to coin chart page
-    Navigator.push(
+    navigateTo(
       context,
-      MaterialPageRoute(
-        builder: (context) => CoinChartPage(
-          coinId: coinData.id,
-          coinName: coinData.name,
-          coinImage: coinData.image,
-        ),
+      CoinChartPage(
+        coinId: coinData.id,
+        coinName: coinData.name,
+        coinImage: coinData.image,
       ),
     );
   }
