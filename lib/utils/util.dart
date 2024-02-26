@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:crypto_app_01/models_v2/coin_chart_model_v2.dart';
@@ -38,7 +39,15 @@ CoinChartModelV2 coinChartModelFromJsonV2(String jsonStr) {
   return coinChartModelV2Data;
 }
 
-void navigateTo(BuildContext context, Widget pageWidget) {
+void permanentlyNavigateTo(BuildContext context, Widget pageWidget) {
   Navigator.pushReplacement(
       context, MaterialPageRoute(builder: (context) => pageWidget));
+}
+
+void navigateTo(BuildContext context, Widget pageWidget) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => pageWidget));
+}
+
+void sleepFor(int secconds, void Function() callback) {
+  Timer(Duration(seconds: secconds), callback);
 }

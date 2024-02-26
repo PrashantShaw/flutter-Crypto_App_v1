@@ -1,11 +1,8 @@
 import 'dart:async';
 
-import 'package:crypto_app_01/pages/coin_market_page.dart';
 import 'package:crypto_app_01/pages/root_navigator.dart';
-import 'package:crypto_app_01/providers/coins_provider.dart';
 import 'package:crypto_app_01/utils/util.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     timerFunction();
-    context.read<Coins>().fetchMarketData();
+    // context.read<Coins>().fetchMarketData();
   }
 
   void timerFunction() {
@@ -28,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void goToHomePage() {
     // navigateTo(context, const CoinMarketPage());
-    navigateTo(context, const RootNavigator());
+    permanentlyNavigateTo(context, const RootNavigator());
   }
 
   @override

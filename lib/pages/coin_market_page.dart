@@ -16,15 +16,18 @@ class _CoinMarketPageState extends State<CoinMarketPage> {
   @override
   void initState() {
     super.initState();
-    // context.read<Coins>().fetchMarketData();
+    context.read<Coins>().fetchMarketData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Consumer<Coins>(
-        builder: renderCoinMarket,
+      body: RefreshIndicator(
+        onRefresh: () => context.read<Coins>().fetchMarketData(),
+        child: Consumer<Coins>(
+          builder: renderCoinMarket,
+        ),
       ),
     );
   }

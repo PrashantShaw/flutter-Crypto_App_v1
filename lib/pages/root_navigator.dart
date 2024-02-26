@@ -5,34 +5,10 @@ import 'package:crypto_app_01/pages/home_page.dart';
 import 'package:crypto_app_01/pages/portfolio_page.dart';
 import 'package:flutter/material.dart';
 
-List pages = [
-  {
-    'widget': const HomePage(),
-    'name': 'Home',
-    'icon': const Icon(
-      Icons.home_outlined,
-      color: Colors.grey,
-    ),
-    'selectedIcon': const Icon(Icons.home),
-  },
-  {
-    'widget': const CoinMarketPage(),
-    'name': 'Market',
-    'icon': const Icon(
-      Icons.grid_3x3_outlined,
-      color: Colors.grey,
-    ),
-    'selectedIcon': const Icon(Icons.grid_3x3),
-  },
-  {
-    'widget': const PortfolioPage(),
-    'name': 'Portfolio',
-    'icon': const Icon(
-      Icons.pie_chart_outline,
-      color: Colors.grey,
-    ),
-    'selectedIcon': const Icon(Icons.pie_chart),
-  },
+final List pages = [
+  () => const HomePage(),
+  () => const CoinMarketPage(),
+  () => const PortfolioPage(),
 ];
 
 class RootNavigator extends StatefulWidget {
@@ -43,46 +19,55 @@ class RootNavigator extends StatefulWidget {
 }
 
 class _RootNavigatorState extends State<RootNavigator> {
-  int currentPageIndex = 0;
-
-  List<Widget> getDestinations() {
-    List<Widget> destnationList = [];
-
-    for (var i = 0; i < pages.length; i++) {
-      final page = pages[i];
-
-      destnationList.add(
-        NavigationDestination(
-          icon: page['icon'],
-          selectedIcon: page['selectedIcon'],
-          label: page['name'],
-        ),
-      );
-    }
-
-    return destnationList;
-  }
+  int _currentPageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    Widget currentPage = pages[currentPageIndex]['widget'];
+    Widget Function() currentPage = pages[_currentPageIndex];
 
     return Scaffold(
       appBar: rootAppBar(context),
       drawer: rootDrawer(context),
-      body: currentPage,
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: currentPageIndex,
-        onDestinationSelected: (value) => setState(() {
-          currentPageIndex = value;
-        }),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        indicatorColor: Colors.transparent,
-        overlayColor: MaterialStateProperty.all(Colors.grey.shade300),
-        // indicatorShape: ShapeBorder.lerp(a, b, t),
-        destinations: getDestinations(),
+      body: currentPage(),
+      bottomNavigationBar: rootBottomNavBar(),
+    );
+  }
+
+  BottomNavigationBar rootBottomNavBar() {
+    return BottomNavigationBar(
+      currentIndex: _currentPageIndex,
+      selectedFontSize: 15,
+      selectedIconTheme: const IconThemeData(color: Colors.black87, size: 25),
+      selectedLabelStyle:
+          const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+      unselectedIconTheme: IconThemeData(
+        color: Colors.grey.shade400,
       ),
+      unselectedLabelStyle: TextStyle(color: Colors.grey.shade400),
+      selectedItemColor: Colors.black,
+      elevation: 2,
+      backgroundColor: Colors.white,
+      enableFeedback: true,
+      onTap: (value) => setState(() {
+        _currentPageIndex = value;
+      }),
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home_outlined),
+          activeIcon: Icon(Icons.home),
+          label: "Home",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.grid_3x3),
+          activeIcon: Icon(Icons.grid_3x3_outlined),
+          label: "Market",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.pie_chart_outline),
+          activeIcon: Icon(Icons.pie_chart),
+          label: "Portfolio",
+        ),
+      ],
     );
   }
 }

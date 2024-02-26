@@ -9,7 +9,8 @@ Future<List<CoinModelV2>> getCoinMarket() async {
   final response = await http.get(url);
 
   if (response.statusCode != 200) {
-    throw Exception('Failed to load Market Data!');
+    throw Exception(
+        'Failed to load Market Data! Status COde: ${response.statusCode}');
   }
   List<CoinModelV2> coinMarketData = coinModelFromJsonV2(response.body);
 

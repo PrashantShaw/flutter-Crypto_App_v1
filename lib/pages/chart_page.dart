@@ -1,6 +1,4 @@
-// import 'package:fl_chart_app/presentation/resources/app_resources.dart';
 import 'package:crypto_app_01/components/chart_filter_button.dart';
-import 'package:crypto_app_01/pages/coin_market_page.dart';
 import 'package:crypto_app_01/providers/coinchart_provider.dart';
 import 'package:crypto_app_01/utils/util.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -16,7 +14,6 @@ final Map<String, int> filterSpanDataPoints = {
   '24H': 12 * 24,
 };
 
-// ignore: must_be_immutable
 class CoinChartPage extends StatefulWidget {
   final String coinId;
   final String coinName;
@@ -82,7 +79,8 @@ class _CoinChartPageState extends State<CoinChartPage> {
   }
 
   void goToPrevPage() {
-    navigateTo(context, const CoinMarketPage());
+    // navigateTo(context, const CoinMarketPage());
+    Navigator.pop(context);
   }
 
   @override
