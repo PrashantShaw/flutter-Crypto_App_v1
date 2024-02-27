@@ -1,5 +1,5 @@
-import 'package:crypto_app_01/models_v2/coin_chart_model_v2.dart';
-import 'package:crypto_app_01/utils/util.dart';
+import 'package:crypto_app_01/resources/models_v2/coin_chart_model_v2.dart';
+import 'package:crypto_app_01/utils/helper.dart';
 import 'package:http/http.dart' as http;
 
 Future<CoinChartModelV2> getCoinChartData([String coinName = "bitcoin"]) async {

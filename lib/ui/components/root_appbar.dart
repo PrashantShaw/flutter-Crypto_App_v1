@@ -13,7 +13,7 @@ AppBar rootAppBar(BuildContext context) {
       Padding(
         padding: const EdgeInsets.only(right: 12),
         child: IconButton(
-          icon: const Icon(Icons.wallet_travel),
+          icon: const Icon(Icons.wallet_giftcard),
           onPressed: () {
             showModalBottomSheet<void>(
               context: context,

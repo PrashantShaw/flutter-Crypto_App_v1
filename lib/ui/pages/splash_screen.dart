@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:crypto_app_01/pages/root_navigator.dart';
-import 'package:crypto_app_01/utils/util.dart';
+import 'package:crypto_app_01/ui/pages/root_navigator.dart';
+import 'package:crypto_app_01/utils/helper.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

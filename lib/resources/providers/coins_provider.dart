@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:crypto_app_01/apis/get_coin_market.dart';
-import 'package:crypto_app_01/models_v2/coin_model_v2.dart';
+import 'package:crypto_app_01/resources/apis/get_coin_market.dart';
+import 'package:crypto_app_01/resources/models_v2/coin_model_v2.dart';
 import 'package:flutter/material.dart';
 
 enum DataState {
@@ -24,6 +24,7 @@ class Coins extends ChangeNotifier {
 
   // methods
   Future<void> fetchMarketData() async {
+    // ignore: avoid_print
     print('IS FETCHING ENEABLED :: $_isFetchingEnabled');
     try {
       // set state to 'loading'

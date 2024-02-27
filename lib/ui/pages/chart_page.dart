@@ -1,6 +1,6 @@
-import 'package:crypto_app_01/components/chart_filter_button.dart';
-import 'package:crypto_app_01/providers/coinchart_provider.dart';
-import 'package:crypto_app_01/utils/util.dart';
+import 'package:crypto_app_01/ui/components/chart_filter_button.dart';
+import 'package:crypto_app_01/resources/providers/coinchart_provider.dart';
+import 'package:crypto_app_01/utils/helper.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';

@@ -1,4 +1,4 @@
-import 'package:crypto_app_01/apis/get_coin_prices.dart';
+import 'package:crypto_app_01/resources/apis/get_coin_prices.dart';
 import 'package:flutter/material.dart';
 
 enum DataState {
