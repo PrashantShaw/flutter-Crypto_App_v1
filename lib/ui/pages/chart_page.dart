@@ -1,3 +1,4 @@
+import 'package:crypto_app_01/resources/providers/theme_provider.dart';
 import 'package:crypto_app_01/ui/components/chart_filter_button.dart';
 import 'package:crypto_app_01/resources/providers/coinchart_provider.dart';
 import 'package:crypto_app_01/utils/helper.dart';
@@ -239,7 +240,8 @@ class _CoinChartPageState extends State<CoinChartPage> {
         ),
         lineBarsData: [
           LineChartBarData(
-            color: Colors.amber,
+            color:
+                context.watch<CAppThemeProvider>().cAppThemeData.primaryColor,
             spots: getChartFlSpots(),
             isCurved: true,
             isStrokeCapRound: true,

@@ -1,7 +1,9 @@
 // import 'package:crypto_app_01/pages/coin_market_page.dart';
+import 'package:crypto_app_01/resources/providers/theme_provider.dart';
 import 'package:crypto_app_01/ui/pages/splash_screen.dart';
 import 'package:crypto_app_01/resources/providers/coinchart_provider.dart';
 import 'package:crypto_app_01/resources/providers/coins_provider.dart';
+import 'package:crypto_app_01/ui/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +14,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => Coins()),
         ChangeNotifierProvider(create: (_) => CoinChart()),
+        ChangeNotifierProvider(create: (_) => CAppThemeProvider()),
       ],
       child: const MyApp(),
     ),
@@ -32,10 +35,13 @@ class MyApp extends StatelessWidget {
       ),
     );
 
+    ThemeData themeData = context.watch<CAppThemeProvider>().cAppThemeData;
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Poppins', useMaterial3: true),
-      // home: CoinMarketPage(),
+      themeMode: ThemeMode.system,
+      theme: themeData,
+      darkTheme: CAppTheme.darkTheme(),
       home: const SplashScreen(),
     );
   }

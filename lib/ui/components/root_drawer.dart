@@ -1,6 +1,8 @@
+import 'package:crypto_app_01/resources/providers/theme_provider.dart';
 import 'package:crypto_app_01/utils/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 Drawer rootDrawer(BuildContext context) {
   return Drawer(
@@ -47,6 +49,16 @@ Drawer rootDrawer(BuildContext context) {
           trailing: Icon(
             Icons.arrow_forward_ios,
             size: 14,
+          ),
+        ),
+        ListTile(
+          leading: Icon(Icons.color_lens),
+          title: Text('Dark Theme'),
+          onTap: () {},
+          trailing: Switch(
+            value: context.watch<CAppThemeProvider>().isDark,
+            onChanged: (val) =>
+                context.read<CAppThemeProvider>().toggleCAppTheme(),
           ),
         ),
       ],
