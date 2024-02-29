@@ -1,4 +1,5 @@
 import 'package:crypto_app_01/resources/models_v2/coin_model_v2.dart';
+import 'package:crypto_app_01/resources/providers/theme_provider.dart';
 import 'package:crypto_app_01/ui/components/coin_tile.dart';
 import 'package:crypto_app_01/resources/providers/coins_provider.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +22,9 @@ class _CoinMarketPageState extends State<CoinMarketPage> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData appTheme = context.watch<CAppThemeProvider>().cAppThemeData;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: appTheme.colorScheme.background,
       body: RefreshIndicator(
         onRefresh: () => context.read<Coins>().fetchMarketData(),
         child: Consumer<Coins>(
@@ -56,7 +58,7 @@ class _CoinMarketPageState extends State<CoinMarketPage> {
 
   Padding coinTilesWrapper(List<CoinModelV2>? marketData) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 0, 24, 0),
+      padding: const EdgeInsets.fromLTRB(24, 12, 24, 0),
       child: ListView.builder(
         itemCount: marketData!.length,
         itemBuilder: (context, index) {

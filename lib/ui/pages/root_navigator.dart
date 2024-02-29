@@ -1,9 +1,11 @@
+import 'package:crypto_app_01/resources/providers/theme_provider.dart';
 import 'package:crypto_app_01/ui/components/root_appbar.dart';
 import 'package:crypto_app_01/ui/components/root_drawer.dart';
 import 'package:crypto_app_01/ui/pages/coin_market_page.dart';
 import 'package:crypto_app_01/ui/pages/home_page.dart';
 import 'package:crypto_app_01/ui/pages/portfolio_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 final List pages = [
   () => const HomePage(),
@@ -29,25 +31,15 @@ class _RootNavigatorState extends State<RootNavigator> {
       appBar: rootAppBar(context),
       drawer: rootDrawer(context),
       body: currentPage(),
-      bottomNavigationBar: rootBottomNavBar(),
+      bottomNavigationBar: rootBottomNavBar(context),
     );
   }
 
-  BottomNavigationBar rootBottomNavBar() {
+  BottomNavigationBar rootBottomNavBar(BuildContext context) {
+    final ThemeData appTheme = context.watch<CAppThemeProvider>().cAppThemeData;
+
     return BottomNavigationBar(
       currentIndex: _currentPageIndex,
-      selectedFontSize: 15,
-      selectedIconTheme: const IconThemeData(color: Colors.black87, size: 25),
-      selectedLabelStyle:
-          const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
-      unselectedIconTheme: IconThemeData(
-        color: Colors.grey.shade400,
-      ),
-      unselectedLabelStyle: TextStyle(color: Colors.grey.shade400),
-      selectedItemColor: Colors.black,
-      elevation: 2,
-      backgroundColor: Colors.white,
-      enableFeedback: true,
       onTap: (value) => setState(() {
         _currentPageIndex = value;
       }),

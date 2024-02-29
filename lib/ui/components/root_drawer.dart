@@ -5,9 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 Drawer rootDrawer(BuildContext context) {
+  final CAppThemeProvider cAppThemeProvider = context.read<CAppThemeProvider>();
+
   return Drawer(
-    backgroundColor: Colors.white,
-    elevation: 0,
     width: MediaQuery.sizeOf(context).width * 0.85,
     child: ListView(
       padding: EdgeInsets.zero,
@@ -23,7 +23,7 @@ Drawer rootDrawer(BuildContext context) {
             ),
           ),
         ),
-        SizedBox(height: 24),
+        const SizedBox(height: 24),
         ListTile(
           leading: Icon(Icons.person_outline_rounded),
           title: Text('My Profile'),
@@ -56,10 +56,10 @@ Drawer rootDrawer(BuildContext context) {
           title: Text('Dark Theme'),
           onTap: () {},
           trailing: Switch(
-            value: context.watch<CAppThemeProvider>().isDark,
-            onChanged: (val) =>
-                context.read<CAppThemeProvider>().toggleCAppTheme(),
-          ),
+              value: context.watch<CAppThemeProvider>().isDark,
+              onChanged: (val) {
+                cAppThemeProvider.toggleCAppTheme();
+              }),
         ),
       ],
     ),

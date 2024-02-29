@@ -1,20 +1,28 @@
 import 'package:crypto_app_01/ui/theme/app_theme.dart';
+import 'package:crypto_app_01/utils/helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 enum ThemeType { dark, light }
 
 class CAppThemeProvider extends ChangeNotifier {
-  bool _isDark = ThemeMode.system == ThemeMode.dark;
-  ThemeData _cAppThemeData = ThemeMode.system == ThemeMode.dark
-      ? CAppTheme.darkTheme()
-      : CAppTheme.lightTheme();
+  // states
+  bool _isDark = false;
+  ThemeData _cAppThemeData = CAppTheme.lightTheme();
+  // SystemUiOverlayStyle _cSystemUiOverlayStyle = getSystemUiOverlayDark();
 
-  ThemeData get cAppThemeData => _cAppThemeData;
+  // getters
   bool get isDark => _isDark;
+  ThemeData get cAppThemeData => _cAppThemeData;
+  // SystemUiOverlayStyle get cSystemUiOverlayStyle => _cSystemUiOverlayStyle;
 
+  // methods
   void toggleCAppTheme() {
     _isDark = !_isDark;
     _cAppThemeData = _isDark ? CAppTheme.darkTheme() : CAppTheme.lightTheme();
+    SystemUiOverlayStyle cSystemUiOverlayStyle =
+        _isDark ? getSystemUiOverlayDark() : getSystemUiOverlayLight();
+    SystemChrome.setSystemUIOverlayStyle(cSystemUiOverlayStyle);
     notifyListeners();
   }
 }

@@ -206,6 +206,7 @@ class _CoinChartPageState extends State<CoinChartPage> {
   }
 
   LineChartData createLineChart() {
+    final ThemeData appTheme = context.watch<CAppThemeProvider>().cAppThemeData;
     return LineChartData(
         lineTouchData: LineTouchData(
           touchTooltipData: LineTouchTooltipData(
@@ -240,8 +241,7 @@ class _CoinChartPageState extends State<CoinChartPage> {
         ),
         lineBarsData: [
           LineChartBarData(
-            color:
-                context.watch<CAppThemeProvider>().cAppThemeData.primaryColor,
+            color: appTheme.colorScheme.primary,
             spots: getChartFlSpots(),
             isCurved: true,
             isStrokeCapRound: true,

@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:crypto_app_01/resources/models_v2/coin_chart_model_v2.dart';
 import 'package:crypto_app_01/resources/models_v2/coin_model_v2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 TextStyle textStyle(
   double fSize,
@@ -50,4 +51,18 @@ void navigateTo(BuildContext context, Widget pageWidget) {
 
 void sleepFor(int secconds, void Function() callback) {
   Timer(Duration(seconds: secconds), callback);
+}
+
+SystemUiOverlayStyle getSystemUiOverlayLight() {
+  return const SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.white,
+    systemNavigationBarIconBrightness: Brightness.dark,
+  );
+}
+
+SystemUiOverlayStyle getSystemUiOverlayDark() {
+  return const SystemUiOverlayStyle(
+    systemNavigationBarColor: Color.fromARGB(255, 20, 20, 20),
+    systemNavigationBarIconBrightness: Brightness.light,
+  );
 }
