@@ -2,6 +2,7 @@ import 'package:crypto_app_01/ui/theme/custom_theme/app_bar_theme.dart';
 import 'package:crypto_app_01/ui/theme/custom_theme/app_color_scheme.dart';
 import 'package:crypto_app_01/ui/theme/custom_theme/app_drawer_theme.dart';
 import 'package:crypto_app_01/ui/theme/custom_theme/bottom_navbar_theme.dart';
+import 'package:crypto_app_01/ui/theme/custom_theme/text_theme.dart';
 import 'package:flutter/material.dart';
 
 class CAppTheme {
@@ -14,6 +15,7 @@ class CAppTheme {
       appBarTheme: appBarThemeLight,
       bottomNavigationBarTheme: bottomNavbarThemeLight,
       drawerTheme: drawerThemeLight,
+      textTheme: textThemeLight,
     );
   }
 
@@ -26,6 +28,7 @@ class CAppTheme {
       appBarTheme: appBarThemeDark,
       bottomNavigationBarTheme: bottomNavbarThemeDark,
       drawerTheme: drawerThemeDark,
+      textTheme: textThemeDark,
     );
   }
 }

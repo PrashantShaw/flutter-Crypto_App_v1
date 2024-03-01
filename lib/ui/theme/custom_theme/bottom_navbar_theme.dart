@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 final BottomNavigationBarThemeData bottomNavbarThemeLight =
     const BottomNavigationBarThemeData().copyWith(
-  elevation: 0,
+  elevation: 2,
   enableFeedback: true,
   backgroundColor: Colors.white,
   // selected

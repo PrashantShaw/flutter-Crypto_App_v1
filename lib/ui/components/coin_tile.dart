@@ -1,4 +1,5 @@
 import 'package:crypto_app_01/resources/models_v2/coin_model_v2.dart';
+import 'package:crypto_app_01/resources/providers/theme_provider.dart';
 import 'package:crypto_app_01/ui/pages/chart_page.dart';
 import 'package:crypto_app_01/resources/providers/coinchart_provider.dart';
 import 'package:crypto_app_01/utils/helper.dart';
@@ -36,6 +37,7 @@ class CoinTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData appTheme = context.watch<CAppThemeProvider>().cAppThemeData;
     return GestureDetector(
       onTap: () => onCoinTileTap(context),
       child: Container(
@@ -61,7 +63,7 @@ class CoinTile extends StatelessWidget {
                       children: [
                         Text(
                           coinData.name,
-                          style: textStyle(14, Colors.black, FontWeight.w500),
+                          style: appTheme.textTheme.bodyMedium,
                         ),
                         Row(
                           children: [
@@ -101,11 +103,11 @@ class CoinTile extends StatelessWidget {
                 children: [
                   Text(
                     "\$ ${formatNumber(coinData.currentPrice)}",
-                    style: textStyle(16, Colors.black87, FontWeight.bold),
+                    style: appTheme.textTheme.bodyLarge,
                   ),
                   Text(
                     "MCap: \$ ${formatNumber(((coinData.marketCap) / 1000000).round())}M",
-                    style: textStyle(12, Colors.black45, FontWeight.w400),
+                    style: appTheme.textTheme.bodySmall,
                   ),
                 ],
               )
