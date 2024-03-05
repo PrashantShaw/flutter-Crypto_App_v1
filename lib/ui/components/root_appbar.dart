@@ -1,10 +1,6 @@
-import 'package:crypto_app_01/resources/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 AppBar rootAppBar(BuildContext context) {
-  final ThemeData appTheme = context.watch<CAppThemeProvider>().cAppThemeData;
-
   return AppBar(
     leading: Builder(
       builder: (context) => IconButton(
