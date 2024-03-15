@@ -1,8 +1,8 @@
 import 'package:crypto_app_01/resources/models_v2/coin_model_v2.dart';
 import 'package:crypto_app_01/resources/providers/theme_provider.dart';
-import 'package:crypto_app_01/ui/pages/chart_page.dart';
+import 'package:crypto_app_01/src/presentation/pages/chart_page.dart';
 import 'package:crypto_app_01/resources/providers/coinchart_provider.dart';
-import 'package:crypto_app_01/utils/helper.dart';
+import 'package:crypto_app_01/src/core/utils/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

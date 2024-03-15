@@ -1,8 +1,8 @@
-import 'package:crypto_app_01/ui/components/root_appbar.dart';
-import 'package:crypto_app_01/ui/components/root_drawer.dart';
-import 'package:crypto_app_01/ui/pages/coin_market_page.dart';
-import 'package:crypto_app_01/ui/pages/home_page.dart';
-import 'package:crypto_app_01/ui/pages/portfolio_page.dart';
+import 'package:crypto_app_01/src/presentation/components/root_appbar.dart';
+import 'package:crypto_app_01/src/presentation/components/root_drawer.dart';
+import 'package:crypto_app_01/src/presentation/pages/coin_market_page.dart';
+import 'package:crypto_app_01/src/presentation/pages/home_page.dart';
+import 'package:crypto_app_01/src/presentation/pages/portfolio_page.dart';
 import 'package:flutter/material.dart';
 
 final List pages = [

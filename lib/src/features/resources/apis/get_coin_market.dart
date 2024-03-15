@@ -1,6 +1,6 @@
 // import 'package:crypto_app_01/models/coin_model.dart';
 import 'package:crypto_app_01/resources/models_v2/coin_model_v2.dart';
-import 'package:crypto_app_01/utils/helper.dart';
+import 'package:crypto_app_01/src/core/utils/helper.dart';
 import 'package:http/http.dart' as http;
 
 Future<List<CoinModelV2>> getCoinMarket() async {
