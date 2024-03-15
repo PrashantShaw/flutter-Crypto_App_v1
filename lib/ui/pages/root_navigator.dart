@@ -1,11 +1,9 @@
-import 'package:crypto_app_01/resources/providers/theme_provider.dart';
 import 'package:crypto_app_01/ui/components/root_appbar.dart';
 import 'package:crypto_app_01/ui/components/root_drawer.dart';
 import 'package:crypto_app_01/ui/pages/coin_market_page.dart';
 import 'package:crypto_app_01/ui/pages/home_page.dart';
 import 'package:crypto_app_01/ui/pages/portfolio_page.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 final List pages = [
   () => const HomePage(),
@@ -36,8 +34,6 @@ class _RootNavigatorState extends State<RootNavigator> {
   }
 
   BottomNavigationBar rootBottomNavBar(BuildContext context) {
-    final ThemeData appTheme = context.watch<CAppThemeProvider>().cAppThemeData;
-
     return BottomNavigationBar(
       currentIndex: _currentPageIndex,
       onTap: (value) => setState(() {
