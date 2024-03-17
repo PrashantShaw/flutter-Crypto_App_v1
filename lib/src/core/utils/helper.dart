@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:crypto_app_01/resources/models_v2/coin_chart_model_v2.dart';
-import 'package:crypto_app_01/resources/models_v2/coin_model_v2.dart';
+import 'package:crypto_app_01/src/features/charts/models_v2/coin_chart_model_v2.dart';
+import 'package:crypto_app_01/src/features/crypto/models_v2/coin_model_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

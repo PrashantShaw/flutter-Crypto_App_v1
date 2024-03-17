@@ -1,15 +1,7 @@
-import 'package:crypto_app_01/src/presentation/components/root_appbar.dart';
-import 'package:crypto_app_01/src/presentation/components/root_drawer.dart';
-import 'package:crypto_app_01/src/presentation/pages/coin_market_page.dart';
-import 'package:crypto_app_01/src/presentation/pages/home_page.dart';
-import 'package:crypto_app_01/src/presentation/pages/portfolio_page.dart';
+import 'package:crypto_app_01/src/core/utils/constants.dart';
+import 'package:crypto_app_01/src/presentation/components/common/root_appbar.dart';
+import 'package:crypto_app_01/src/presentation/components/common/root_drawer.dart';
 import 'package:flutter/material.dart';
-
-final List pages = [
-  () => const HomePage(),
-  () => const CoinMarketPage(),
-  () => const PortfolioPage(),
-];
 
 class RootNavigator extends StatefulWidget {
   const RootNavigator({super.key});

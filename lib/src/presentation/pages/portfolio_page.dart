@@ -1,4 +1,4 @@
-import 'package:crypto_app_01/resources/providers/theme_provider.dart';
+import 'package:crypto_app_01/src/core/theme/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
