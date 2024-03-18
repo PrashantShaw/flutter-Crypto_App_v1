@@ -1,8 +1,9 @@
 // import 'package:crypto_app_01/pages/coin_market_page.dart';
+import 'package:crypto_app_01/src/core/router/app_router.dart';
+import 'package:crypto_app_01/src/core/router/bottom_nav_provider.dart';
 import 'package:crypto_app_01/src/features/charts/providers/coinchart_provider.dart';
 import 'package:crypto_app_01/src/features/crypto/providers/coins_provider.dart';
 import 'package:crypto_app_01/src/core/theme/theme_provider.dart';
-import 'package:crypto_app_01/src/presentation/pages/intro/splash_screen.dart';
 import 'package:crypto_app_01/src/core/theme/app_theme.dart';
 import 'package:crypto_app_01/src/core/utils/helper.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => BottomNavProvider()),
         ChangeNotifierProvider(create: (_) => Coins()),
         ChangeNotifierProvider(create: (_) => CoinChart()),
         ChangeNotifierProvider(create: (_) => CAppThemeProvider()),
@@ -37,12 +39,12 @@ class MyApp extends StatelessWidget {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     SystemChrome.setSystemUIOverlayStyle(cSystemUiOverlayStyleLight);
 
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.light,
       theme: themeData,
       darkTheme: CAppTheme.darkTheme(),
-      home: const SplashScreen(),
     );
   }
 }
