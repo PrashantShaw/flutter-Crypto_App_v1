@@ -1,4 +1,5 @@
 import 'package:crypto_app_01/src/presentation/pages/bottom_nav_base.dart';
+import 'package:crypto_app_01/src/presentation/pages/charts/chart_page.dart';
 import 'package:crypto_app_01/src/presentation/pages/crypto/coin_market_page.dart';
 import 'package:crypto_app_01/src/presentation/pages/home_page.dart';
 import 'package:crypto_app_01/src/presentation/pages/intro/splash_screen.dart';
@@ -63,29 +64,17 @@ final appRouter = GoRouter(
         ),
       ],
     ),
-    // ShellRoute(
-    //   navigatorKey: _rootNavigatorKey,
-    //   builder: (context, state, child) => BottomNavBase(child: child),
-    //   routes: [
-    //     GoRoute(
-    //       path: '/home',
-    //       pageBuilder: (context, state) => const NoTransitionPage(
-    //         child: HomePage(),
-    //       ),
-    //     ),
-    //     GoRoute(
-    //       path: '/home/tab1',
-    //       pageBuilder: (context, state) => const NoTransitionPage(
-    //         child: CoinMarketPage(),
-    //       ),
-    //     ),
-    //     GoRoute(
-    //       path: '/home/tab2',
-    //       pageBuilder: (context, state) => const NoTransitionPage(
-    //         child: PortfolioPage(),
-    //       ),
-    //     ),
-    //   ],
-    // ),
+    GoRoute(
+      path: RoutPath.chart.path,
+      name: RoutPath.chart.name,
+      builder: (context, state) {
+        final qParams = state.uri.queryParameters;
+        return CoinChartPage(
+          coinId: qParams['coinId'] as String,
+          coinName: qParams['coinName'] as String,
+          coinImage: qParams['coinImage'] as String,
+        );
+      },
+    ),
   ],
 );

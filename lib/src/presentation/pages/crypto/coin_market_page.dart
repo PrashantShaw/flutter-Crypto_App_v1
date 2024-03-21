@@ -1,4 +1,5 @@
 import 'package:crypto_app_01/src/core/theme/theme_provider.dart';
+import 'package:crypto_app_01/src/core/utils/constants.dart';
 import 'package:crypto_app_01/src/features/crypto/models_v2/coin_model_v2.dart';
 import 'package:crypto_app_01/src/features/crypto/providers/coins_provider.dart';
 import 'package:crypto_app_01/src/presentation/components/crypto/coin_tile.dart';

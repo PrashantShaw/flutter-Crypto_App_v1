@@ -1,10 +1,13 @@
+import 'package:crypto_app_01/src/core/router/app_router.dart';
 import 'package:crypto_app_01/src/core/theme/theme_provider.dart';
+import 'package:crypto_app_01/src/core/utils/constants.dart';
 import 'package:crypto_app_01/src/core/utils/helper.dart';
 import 'package:crypto_app_01/src/features/charts/providers/coinchart_provider.dart';
 import 'package:crypto_app_01/src/presentation/components/charts/chart_filter_button.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 final Map<String, int> filterSpanDataPoints = {
@@ -81,7 +84,8 @@ class _CoinChartPageState extends State<CoinChartPage> {
 
   void goToPrevPage() {
     // navigateTo(context, const CoinMarketPage());
-    Navigator.pop(context);
+    // Navigator.pop(context);
+    context.go(RoutPath.market.path);
   }
 
   @override

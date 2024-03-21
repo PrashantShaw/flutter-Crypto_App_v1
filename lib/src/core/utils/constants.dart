@@ -7,3 +7,9 @@ final List pages = [
   () => const CoinMarketPage(),
   () => const PortfolioPage(),
 ];
+
+enum DataState {
+  loading,
+  loaded,
+  error,
+}

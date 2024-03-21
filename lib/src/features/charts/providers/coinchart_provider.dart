@@ -1,11 +1,6 @@
+import 'package:crypto_app_01/src/core/utils/constants.dart';
 import 'package:crypto_app_01/src/features/charts/data_sources/get_coin_prices.dart';
 import 'package:flutter/material.dart';
-
-enum DataState {
-  loading,
-  loaded,
-  error,
-}
 
 class CoinChart extends ChangeNotifier {
   // states

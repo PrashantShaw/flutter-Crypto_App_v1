@@ -1,14 +1,9 @@
 import 'dart:async';
 
+import 'package:crypto_app_01/src/core/utils/constants.dart';
 import 'package:crypto_app_01/src/features/crypto/data_sources/get_coin_market.dart';
 import 'package:crypto_app_01/src/features/crypto/models_v2/coin_model_v2.dart';
 import 'package:flutter/material.dart';
-
-enum DataState {
-  loading,
-  loaded,
-  error,
-}
 
 class Coins extends ChangeNotifier {
   // states

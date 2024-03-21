@@ -1,27 +1,28 @@
+import 'package:crypto_app_01/src/core/router/app_router.dart';
 import 'package:crypto_app_01/src/core/theme/theme_provider.dart';
 import 'package:crypto_app_01/src/features/charts/providers/coinchart_provider.dart';
 import 'package:crypto_app_01/src/features/crypto/models_v2/coin_model_v2.dart';
-import 'package:crypto_app_01/src/presentation/pages/charts/chart_page.dart';
 import 'package:crypto_app_01/src/core/utils/helper.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class CoinTile extends StatelessWidget {
   final CoinModelV2 coinData;
   const CoinTile({super.key, required this.coinData});
 
-  void onCoinTileTap(context) {
+  void onCoinTileTap(BuildContext context) {
     // fetch coin chart data
     Provider.of<CoinChart>(context, listen: false)
         .fetchCoinChartData(coinData.id);
     // navigate to coin chart page
-    navigateTo(
-      context,
-      CoinChartPage(
-        coinId: coinData.id,
-        coinName: coinData.name,
-        coinImage: coinData.image,
-      ),
+    context.goNamed(
+      RoutPath.chart.name,
+      queryParameters: {
+        'coinId': coinData.id,
+        'coinName': coinData.name,
+        'coinImage': coinData.image,
+      },
     );
   }
 
